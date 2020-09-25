@@ -35,20 +35,20 @@ Open up your terminal. You can do this by going to Applications > Utilities >
 Terminal, or by using the quick launch (`cmd` + `space`) and just start typing
 “Terminal”.
 
-The first tools we're going to install are the Xcode command-line tools.
+The first tools we're going to install are the Xcode Command Line Tools.
 [Xcode][] is a suite of development tools from Apple, including tools for
-building Mac and iPhone applications. For this course, we only need the Xcode
-command-line tools, as many other tools rely on them. Run the following to
-install them:
+building Mac and iPhone applications. We only need the command line tools, as
+many other tools rely on them, so we can skip downloading all of Xcode. Run the
+following to install them:
 
 ```sh
 xcode-select --install
 ```
 
-You will be prompted to install Xcode Command-Line Tools. Agree and allow the
-install to continue. You may need to provide your computer's password. 
+You will be prompted to install Xcode Command  Line Tools. Agree and allow the
+install to continue. You may need to provide your computer's password.
 
-> **Important:** If the Xcode Command-Line Tools aren't installed, you may encounter
+> **Important:** If the Xcode Command Line Tools aren't installed, you may encounter
 > errors later on when working with gems like `sqlite3`. To double check that everything is installed,
 > rerun the `xcode-select --install` command. If everything is installed, you should see this error:
 >
@@ -58,6 +58,11 @@ install to continue. You may need to provide your computer's password.
 >
 > If you receive this error, you are good to continue!
 
+If you encounter any errors while installing the Command Line Tools, you can
+also directly download the tools from the Apple Developer site. Go to
+[https://developer.apple.com/download/more/](https://developer.apple.com/download/more/)
+and search for `xcode`. Sort the results by *Release Date* and download the
+latest 'Command Line Tools for Xcode' option.
 
 ### Install Homebrew
 
@@ -137,7 +142,7 @@ gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703
 > command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 > ```
 
-Once the encryption keys are downloaded, use the following command to download RVM:
+Once the encryption keys download, use the following command to download RVM:
 
 ```sh
 curl -sSL https://get.rvm.io | bash
@@ -207,6 +212,63 @@ using Homebrew:
 ```sh
 brew install git
 ```
+
+### Configure Git
+
+Git is a version control system that will play an important role in keeping
+track of the code we write. Git collaborates with [GitHub][github], so with Git
+installed, we now want to connect it to a GitHub account. If you don't have an
+account, [sign up for one][join] before continuing.
+
+[join]: https://github.com/join
+
+To get started with configuration, we first need to let Git know who you are.
+You can do this by running:
+
+```sh
+git config --global user.email "you@example.com"
+git config --global user.name "Your Username"
+```
+
+Replace `"you@example.com"` with the email tied to your GitHub account and
+`"Your Username"` with your GitHub username. Git will use this email and name as
+the author for all the changes you make.
+
+**IMPORTANT:** While we're configuring GitHub, we should add a new SSH key.
+Setting this key up will keep you from having to provide your username
+and password whenever you use the terminal to interact with GitHub.
+
+* First, check if you already have an SSH key by running
+  `cat ~/.ssh/id_rsa.pub`. If the terminal prints out a long string of
+  characters starting with `ssh-rsa`, you've already got a key and can skip
+  the next bullet
+* If the last command does not print anything, run `ssh-keygen` to create a
+  new SSH key. You should be prompted to select a location and passphrase for
+  your new key. Leave everything blank and press enter for the default
+  location and no passphrase. If you’re asked if you want to overwrite, then
+  you already have an SSH key, and you do not want to overwrite it.
+
+Run `cat ~/.ssh/id_rsa.pub` once more and copy the key that is printed out.
+
+Now, with your key copied, head over to [GitHub][github] and log in to your
+account. Click your avatar in the upper right corner to bring up an account
+menu, then click **Settings**. You will be redirected to your account settings
+page. On this page is a navigation item, **SSH and GPG keys**. Click this and
+then click **New SSH key**. A form will appear where you can paste your key.
+
+![example add ssh](https://curriculum-content.s3.amazonaws.com/onboarding/add%20ssh%20key.png)
+
+Make sure the key is fully copied. It should start with `ssh-rsa` and end with
+what looks like an email address, but is actually the account you're logged into
+on your computer _at_ your computer's name.
+
+Give your key a descriptive title and submit it to finish the configuration.
+
+**If you encountered any issues while configuring Git, follow the
+[instructions provided by GitHub][add ssh] for additional information.** For additional
+info on configuring Git, [check out the community-maintained documentation][git-scm].
+
+[git-scm]: https://www.git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup#_first_time
 
 ### Set Up the Learn gem
 
@@ -419,7 +481,6 @@ following commands to do so:
 ```sh
 mv ~/.gitignore{,.bak}
 mv ~/.zprofile{,.bak}
-mv ~/.gitconfig{,.bak}
 ```
 
 > **Note:** If when you’re trying to back up a file, you get the error `No such
@@ -456,16 +517,6 @@ source ~/.zprofile
 We recommend you take a look at this file and see if there are any
 shortcuts of your own that you’d like to add!
 
-#### Set up the Default Git Configuration File
-
-In the next step, we'll configure Git, but before we do, we will set up a default
-configuration file called `.gitconfig`. To get the default `.gitconfig` file,
-run:
-
-```sh
-curl "https://raw.githubusercontent.com/flatiron-school/dotfiles/master/gitconfig" -o "$HOME/.gitconfig"
-```
-
 > **Note:** After changing up the dotfiles, it is recommended you run:
 >
 > ```sh
@@ -473,38 +524,6 @@ curl "https://raw.githubusercontent.com/flatiron-school/dotfiles/master/gitconfi
 > ```
 >
 > This will attempt to clear any potential [PATH][] related issues.
-
-### Configure Git
-
-With Git installed, we now want to configure it using your own account.
-First, you need to let Git know who you are. You can do this by running:
-
-```sh
-git config --global user.email "you@example.com"
-git config --global user.name "Your Username"
-```
-
-Replace `"you@example.com"` with the email tied to your GitHub account and
-`"Your Username"` with your GitHub username. Git will use this email and name as the
-author for all the changes you make.
-
-**IMPORTANT:** While we're configuring GitHub, we should add a new SSH key.
-Setting this key up will keep you from having to provide your username
-and password whenever you use the terminal to interact with GitHub.
-
-* First, check if you already have an SSH key by running
-  `cat ~/.ssh/id_rsa.pub`. If the terminal prints out a long string of
-  characters starting with `ssh-rsa`, you've already got a key and can skip
-  the next bullet
-* If the last command does not print anything, run `ssh-keygen` to create a
-  new SSH key. You should be prompted to select a location and passphrase for
-  your new key. Leave everything blank and press enter for the default
-  location and no passphrase. If you’re asked if you want to overwrite, then
-  you already have an SSH key, and you do not want to overwrite it.
-
-Run `cat ~/.ssh/id_rsa.pub` once more and copy the key that is printed out.
-**Follow the [instructions provided by GitHub][add ssh] and add this key to your
-GitHub account**
 
 ### Install Chrome
 
@@ -640,7 +659,29 @@ This error is typically due to issues in the `~/.learn-config` file.
     is valid and has your computer's username after `/Users/`. You can confirm this
     name by running `echo $HOME`. 
 
-3.  Save the `.learn-config` file and try running `learn whoami`. 
+3.  Save the `.learn-config` file and try running `learn whoami`.
+
+### Troubleshooting Git Configuration
+
+If you have any issues with setting up Git or connecting your local machine to
+GitHub, we recommend checking out [GitHub's help documentation][github help] for
+a more thorough walkthrough of the installation and configuration process.
+
+[github help]: https://docs.github.com/en/github
+
+You can reset your Git configuration by running the following:
+
+```sh
+mv ~/.gitconfig{,.bak}
+curl "https://raw.githubusercontent.com/flatiron-school/dotfiles/master/gitconfig" -o "$HOME/.gitconfig"
+```
+
+The above command will erase your settings, so make sure to re-add your username and email after:
+
+```sh
+git config --global user.email "you@example.com"
+git config --global user.name "Your Username"
+```
 
 ## Resources
 
@@ -671,3 +712,4 @@ This error is typically due to issues in the `~/.learn-config` file.
 [Rails]: https://rubyonrails.org/
 [PATH]: https://en.wikipedia.org/wiki/PATH_(variable)
 [shell]: https://en.wikipedia.org/wiki/Shell_%28computing%29
+[github]: https://github.com/
