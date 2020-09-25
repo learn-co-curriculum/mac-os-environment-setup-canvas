@@ -93,6 +93,8 @@ was output (like `/bin/bash`), run the following commands:
 
 ```sh
 brew install zsh
+```
+```sh
 chsh -s /bin/zsh
 ```
 
@@ -108,6 +110,8 @@ rely on, [GMP][] and [GnuPG][]:
 
 ```sh
 brew install gmp
+```
+```sh
 brew install gnupg
 ```
 
@@ -153,6 +157,8 @@ loaded. Next, we will install the Ruby version we'll be using and set it as the 
 
 ```sh
 rvm install 2.6.1
+```
+```sh
 rvm use 2.6.1 --default
 ```
 
@@ -227,6 +233,8 @@ You can do this by running:
 
 ```sh
 git config --global user.email "you@example.com"
+```
+```sh
 git config --global user.name "Your Username"
 ```
 
@@ -342,7 +350,11 @@ instead of `Development/code`, lets make a `Flatiron/code` folder:
 
 ```sh
 cd  ~
+```
+```sh
 mkdir Flatiron
+```
+```sh
 mkdir Flatiron/code
 ```
 
@@ -421,7 +433,11 @@ To install Postgres, run the following commands:
 
 ```sh
 brew install postgres
+```
+```sh
 brew services start postgresql
+```
+```sh
 gem install pg
 ```
 
@@ -457,7 +473,11 @@ Finally, run the three following commands to install the latest version of Node:
 
 ```sh
 nvm install node
+```
+```sh
 nvm use node
+```
+```sh
 nvm alias default node
 ```
 
@@ -480,6 +500,8 @@ following commands to do so:
 
 ```sh
 mv ~/.gitignore{,.bak}
+```
+```sh
 mv ~/.zprofile{,.bak}
 ```
 
@@ -511,6 +533,8 @@ the following:
 
 ```sh
 curl "https://raw.githubusercontent.com/flatiron-school/dotfiles/master/.zprofile" -o "$HOME/.zprofile"
+```
+```sh
 source ~/.zprofile
 ```
 
@@ -561,6 +585,8 @@ Below are some options to try for specific issues.
 
    ```sh
    rvm use 2.6.1
+   ```
+   ```sh
    rvm --default use 2.6.1
    ```
 
@@ -605,6 +631,8 @@ Below are some options to try for specific issues.
 
    ```sh
    rvm use 2.6.1
+   ```
+   ```sh
    rvm --default use 2.6.1
    ```
 
@@ -612,6 +640,8 @@ Below are some options to try for specific issues.
 
    ```sh
    gem install learn-co
+   ```
+   ```sh
    learn whoami
    ```
 
@@ -634,7 +664,11 @@ Below are some options to try for specific issues.
 
    ```sh
    bundle clean --force
+   ```
+   ```sh
    gem install learn-co
+   ```
+   ```sh
    gem install bundler
    ```
 
@@ -673,6 +707,8 @@ You can reset your Git configuration by running the following:
 
 ```sh
 mv ~/.gitconfig{,.bak}
+```
+```sh
 curl "https://raw.githubusercontent.com/flatiron-school/dotfiles/master/gitconfig" -o "$HOME/.gitconfig"
 ```
 
@@ -680,6 +716,8 @@ The above command will erase your settings, so make sure to re-add your username
 
 ```sh
 git config --global user.email "you@example.com"
+```
+```sh
 git config --global user.name "Your Username"
 ```
 
