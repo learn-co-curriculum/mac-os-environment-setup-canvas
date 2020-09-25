@@ -461,7 +461,11 @@ Next, run the following commands:
 
 ```sh
 echo "$(echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' | cat  - ~/.zshrc)" > ~/.zshrc
+```
+```sh
 echo "$(echo 'export NVM_DIR="$HOME/.nvm"' | cat - ~/.zshrc)" >> ~/.zshrc
+```
+```sh
 source ~/.zshrc
 ```
 
